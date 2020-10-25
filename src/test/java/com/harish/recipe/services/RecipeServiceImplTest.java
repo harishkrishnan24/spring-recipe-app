@@ -1,5 +1,7 @@
 package com.harish.recipe.services;
 
+import com.harish.recipe.converters.RecipeCommandToRecipe;
+import com.harish.recipe.converters.RecipeToRecipeCommand;
 import com.harish.recipe.domain.Recipe;
 import com.harish.recipe.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,13 +22,19 @@ class RecipeServiceImplTest {
     RecipeService recipeService;
 
     @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
     RecipeRepository recipeRepository;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
